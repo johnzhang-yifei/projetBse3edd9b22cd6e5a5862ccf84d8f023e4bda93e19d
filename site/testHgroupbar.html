@@ -143,12 +143,13 @@ chart.append("g")
 // Draw legend
 var legendRectSize = 18,
     legendSpacing  = 4;
-
+    
+    console.log(data.series)
 var legend = chart.selectAll('.legend')
     .data(data.series)
     .enter()
     .append('g')
-    .attr('transform', function (d, i) {
+    .attr('transform', function (d, i) {console.log(i)
         var height = legendRectSize + legendSpacing;
         var offset = -gapBetweenGroups/2;
         var horz = spaceForLabels + chartWidth + 40 - legendRectSize;

@@ -120,6 +120,11 @@ function q6groupbar(currentData,currentYear) {
               return data.labels[Math.floor(i/data.series.length)];
             else
               return ""});
+
+      tip.html(function(d) {        
+                return d + " (" + (d*100/totalCount).toFixed(1) + "% ) répondants" });
+        
+      bar.call(tip);
       
       chart.append("g")
             .attr("class", "y axis")
@@ -129,7 +134,8 @@ function q6groupbar(currentData,currentYear) {
       // Draw legend
       var legendRectSize = 18,
           legendSpacing  = 4;
-      
+
+      console.log(data.series)
       var legend = chart.selectAll('.legend')
           .data(data.series)
           .enter()
@@ -141,6 +147,7 @@ function q6groupbar(currentData,currentYear) {
               var vert = i * height - offset;
               return 'translate(' + horz + ',' + vert + ')';
           });
+          
       
       legend.append('rect')
           .attr('width', legendRectSize)
@@ -155,10 +162,7 @@ function q6groupbar(currentData,currentYear) {
           .text(function (d) { return d.label; });
 
 
-        tip.html(function(d) {        
-        return d + " (" + (d*100/totalCount).toFixed(1) + "% ) répondants" });
 
-    bar.call(tip);
 
 
 }

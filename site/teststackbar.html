@@ -15,7 +15,7 @@ body {
 
 <body>
 
-<svg id="chart" width="650" height="400"></svg>
+<div id="q4stackbar"></div>
 
 Select year: 
 <select id="year"></select>
@@ -38,11 +38,11 @@ function chart(csv) {
 		.data(year)
 	.enter().append("option")
 		.text(d => d)
-
-	var svg = d3.select("#chart"),
+		
+	var svg = d3.select('#q4stackbar').append("svg").attr("width", 650).attr("height", 400),
 		margin = {top: 35, left: 35, bottom: 0, right: 0},
-		width = +svg.attr("width") - margin.left - margin.right,
-		height = +svg.attr("height") - margin.top - margin.bottom;
+		width = 650 - margin.left - margin.right,
+		height = 400 - margin.top - margin.bottom;
 
 	var x = d3.scaleBand()
 		.range([margin.left, width - margin.right])
@@ -139,4 +139,4 @@ function chart(csv) {
 </script>
 
 </body>
-</html>
+</html> 
