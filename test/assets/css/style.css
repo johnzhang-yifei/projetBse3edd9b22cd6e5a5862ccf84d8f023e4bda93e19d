@@ -1,0 +1,98 @@
+/***** General style *****/
+body {
+  display: table;
+  margin: 20px auto auto;
+  font-family: Arial, sans-serif;
+}
+
+.error {
+  color: #914141;
+}
+
+.row {
+  display: flex;
+}
+
+.row > .col {
+  flex: 1;
+}
+
+/***** Toggle buttons *****/
+.toggle-buttons {
+  display: flex;
+}
+
+.toggle-buttons > button {
+  flex: 1;
+  line-height: 30px;
+  color: #444;
+  background-color: #fafafa;
+  font-size: 11pt;
+  border: 1px solid #999;
+  border-right: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.toggle-buttons > button:last-child {
+  border-right: 1px solid #999;
+}
+
+.toggle-buttons > button.active {
+  color: #fff;
+  background-color: #4c7d95;
+}
+
+
+
+
+/***** SVG *****/
+svg {
+  background-color: white;
+}
+
+
+
+/***** Tooltip *****/
+.d3-tip {
+  line-height: 1;
+  padding: 12px;
+  border-radius: 2px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.d3-tip:after {
+  display: inline;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin: -1px 0 0 0;
+  box-sizing: border-box;
+  font-size: 10px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+
+#wcLabel {
+  position: absolute;
+  border: 2px solid #fff;
+  box-shadow: 0 0 4px 0 #008;
+  padding: 2px;
+  /*margin: -4px 0 0 -4px;*/
+  pointer-events: none; }
+
+#wcSpan {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  margin-top: 6px;
+  padding: 0 0.5em;
+  border-radius: 0.5em;
+  white-space: nowrap; }
