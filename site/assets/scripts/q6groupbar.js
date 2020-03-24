@@ -132,34 +132,45 @@ function q6groupbar(currentData,currentYear) {
             .call(yAxis);
       
       // Draw legend
-      var legendRectSize = 18,
-          legendSpacing  = 4;
-
-      console.log(data.series)
-      var legend = chart.selectAll('.legend')
-          .data(data.series)
+      var legendRectSize = 12;
+      var legendSpacing = 10;
+      var legendX = 640;
+      var legendY = 20;
+      var legendMargin = 10;
+      var legend = chart.append("g")
+          .selectAll("g")
+          .data(color.domain())
           .enter()
           .append('g')
-          .attr('transform', function (d, i) {
-              var height = legendRectSize + legendSpacing;
-              var offset = -gapBetweenGroups/2;
-              var horz = spaceForLabels + chartWidth + 40 - legendRectSize;
-              var vert = i * height - offset;
-              return 'translate(' + horz + ',' + vert + ')';
+            .attr('transform', function(d, i) {
+              var height = legendRectSize + legendMargin;
+              var x = 0;
+              var y = i * height;
+              return 'translate(' + x + ',' + y + ')';
           });
-          
       
       legend.append('rect')
           .attr('width', legendRectSize)
           .attr('height', legendRectSize)
-          .style('fill', function (d, i) { return color(i); })
-          .style('stroke', function (d, i) { return color(i); });  
+          .attr('x', legendX)
+          .attr('y', legendY)
+          .attr("id", function(d){ 
+            //console.log(d);
+            return d + "Rect";      
+          })
+          .attr("class", "legend")
+          .style("fill", function(d){ return  color(d);  });
+      
+
       
       legend.append('text')
-          .attr('class', 'legend')
-          .attr('x', legendRectSize + legendSpacing)
-          .attr('y', legendRectSize - legendSpacing)
-          .text(function (d) { return d.label; });
+          .attr('x', legendX + legendRectSize + legendSpacing)
+          .attr('y', legendY + legendRectSize - legendSpacing + legendMargin)
+          .attr("class", "legend_text")
+          .text(function(d) { return data.series[d].label; })
+          .attr('font-size', 15);
+      
+
 
 
 

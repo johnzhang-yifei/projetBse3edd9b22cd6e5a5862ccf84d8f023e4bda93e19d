@@ -75,7 +75,12 @@ function q3bar(currentData, currentYear) {
 
     var tip = d3.tip()
     .attr('class', 'd3-tip')
-    .offset([-10, 0]);
+    .offset([-10, 0])
+    .html(function(d) {
+      let percent = d.count / (d3.sum(data, function(d){return d.count; }));  
+      let text =  d.count + " (" + (percent*100).toFixed(1) + "% ) répondants:</br>" + d.Q3answer;
+      return text;
+    });
 
 
     barChartGroup.selectAll("rect")
@@ -90,15 +95,7 @@ function q3bar(currentData, currentYear) {
     .on("mouseover", tip.show)
     .on("mouseout", tip.hide);
 
-
-
-    tip.html(function(d) {
-        let percent = d.count / (d3.sum(data, function(d){return d.count; }));  
-        let text =  d.count + " (" + (percent*100).toFixed(1) + "% ) répondants:</br>" + d.Q3answer;
-        return text;
-      });
-
-      barChartSvg.call(tip);
+    barChartSvg.call(tip);
 
 }
 
