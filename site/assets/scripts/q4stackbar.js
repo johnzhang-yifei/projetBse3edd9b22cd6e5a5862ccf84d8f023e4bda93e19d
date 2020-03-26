@@ -1,7 +1,7 @@
 
 function q4stackbar(currentData,currentYear) {
 
-  console.log("q4stackbar",currentYear,currentData)
+  //console.log("q4stackbar",currentYear,currentData)
 
 
 var nbQ4A1=0, nbQ4B1=0, nbQ4C1=0, 
@@ -54,7 +54,7 @@ var data = [
   {Year: currentYear, Motif: "Un mentor entrepreneur", "1er choix": nbQ4A7, "2eme choix":nbQ4B7, "3eme choix":nbQ4C7, total: nbQ4A7+nbQ4B7+nbQ4C7 },
   {Year: currentYear, Motif: "Du financement", "1er choix": nbQ4A8, "2eme choix":nbQ4B8, "3eme choix":nbQ4C8, total: nbQ4A8+nbQ4B8+nbQ4C8 }
 ];
-console.log(data)
+//console.log(data)
 chart(data,currentYear)
 
 function chart(csv, currentYear) {
@@ -97,9 +97,9 @@ function chart(csv, currentYear) {
         return text;
       });
 
-	update(currentYear, 0)
+	update(currentYear, 0, 0)
 
-	function update(input, speed) {
+	function update(input, speed, choix) {
 
 		var data = csv.filter(f => f.Year == input)
 
@@ -113,10 +113,13 @@ function chart(csv, currentYear) {
 		svg.selectAll(".y-axis").transition().duration(speed)
 			.call(d3.axisLeft(y).ticks(null, "s"))
 
-		
-    data.sort(d3.select("#q4sort").property("checked")
+		if(choix==0){    data.sort(d3.select("#q4sort").property("checked")
 			? (a, b) => b.total - a.total
-			: (a, b) => motifs.indexOf(a.Motif) - motifs.indexOf(b.Motif))
+      : (a, b) => motifs.indexOf(a.Motif) - motifs.indexOf(b.Motif))}
+      else if (choix == 1){data.sort((a, b) => b["1er choix"] - a["1er choix"])}
+      else if (choix == 2){data.sort((a, b) => b["2eme choix"] - a["2eme choix"])}
+      else if (choix == 3){data.sort((a, b) => b["3eme choix"] - a["3eme choix"])}
+
 
 		x.domain(data.map(d => d.Motif));
 
@@ -167,7 +170,7 @@ function chart(csv, currentYear) {
 
       var checkbox = d3.select("#q4sort")
       .on("click", function() {
-        update(input, 450)
+        update(input, 450, 0)
       })
 
   
@@ -196,11 +199,16 @@ function chart(csv, currentYear) {
           .attr('x', legendX)
           .attr('y', legendY)
           .attr("id", function(d){ 
-            //console.log(d);
+            
             return d + "Rect";      
           })
           .attr("class", "legend")
-          .style("fill", function(d){ return  color(d);  });
+          .style("fill", function(d){ return  color(d);  })
+          .on("click", function(d) {//console.log(d);
+            if(d=="1er choix"){update(input, 450, 1)}
+            else if(d=="2eme choix"){update(input, 450, 2)}
+            else if(d=="3eme choix"){update(input, 450, 3)}            
+          });
       
 
       
@@ -209,7 +217,13 @@ function chart(csv, currentYear) {
           .attr('y', legendY + legendRectSize - legendSpacing + legendMargin)
           .attr("class", "legend_text")
           .text(function(d) { return d; })
-          .attr('font-size', 15);
+          .attr('font-size', 15)
+          .on("click", function(d) {//console.log(d);
+            if(d=="1er choix"){update(input, 450, 1)}
+            else if(d=="2eme choix"){update(input, 450, 2)}
+            else if(d=="3eme choix"){update(input, 450, 3)}
+            
+          });
       
      
 

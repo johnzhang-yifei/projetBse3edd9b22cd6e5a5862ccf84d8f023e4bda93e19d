@@ -28,7 +28,7 @@ function q7sortbar(currentData,currentYear) {
        {Q7answer:"Stages entrepreneuriaux", count:nbQ7F},
        {Q7answer:"Accès à un conseiller/coach", count:nbQ7G},
        {Q7answer:"Je n’en connais aucune", count:nbQ7H},
-       {Q7answer:"AUtre", count:nbQ7I}
+       {Q7answer:"Autre", count:nbQ7I}
    );
    
    data.sort(function (a, b) { return b.count - a.count;  });
