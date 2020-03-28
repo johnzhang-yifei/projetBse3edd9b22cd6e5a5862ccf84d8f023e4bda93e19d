@@ -12,7 +12,7 @@ function q9table(currentData,currentYear) {
 
 
 let table = d3.select("#q9table").append("table")
-.attr("style", "margin-left: 250px"),
+.attr("style", "margin-left: 20px"),
 thead = table.append("thead"),
 tbody = table.append("tbody");
 

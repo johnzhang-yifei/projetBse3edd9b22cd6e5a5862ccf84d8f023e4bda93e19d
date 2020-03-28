@@ -177,7 +177,7 @@ function update(input, speed, choix) {
   svg.selectAll(".x-axis").transition().duration(speed)
     .call(d3.axisBottom(x).tickSizeOuter(0))
     .selectAll("text")
-    .attr("transform", "rotate(10)")
+    .attr("transform", "rotate(15)")
     .style("text-anchor", "start");
   
 
@@ -248,7 +248,7 @@ function update(input, speed, choix) {
         })
         .attr("class", "legend")
         .style("fill", function(d){ return  color(d);  })
-        .on("click", function(d) {console.log(d);
+        .on("click", function(d) {//console.log(d);
           if(d=="1er choix"){update(input, 450, 1)}
           else if(d=="2eme choix"){update(input, 450, 2)}
           else if(d=="3eme choix"){update(input, 450, 3)}
@@ -264,7 +264,7 @@ function update(input, speed, choix) {
         .attr("class", "legend_text")
         .text(function(d) { return d; })
         .attr('font-size', 15)
-        .on("click", function(d) {console.log(d);
+        .on("click", function(d) {//console.log(d);
           if(d=="1er choix"){update(input, 450, 1)}
           else if(d=="2eme choix"){update(input, 450, 2)}
           else if(d=="3eme choix"){update(input, 450, 3)}
@@ -272,10 +272,8 @@ function update(input, speed, choix) {
           else if(d=="5eme choix"){update(input, 450, 5)}          
         });
     
-   
 
 }
-
 
 }
 

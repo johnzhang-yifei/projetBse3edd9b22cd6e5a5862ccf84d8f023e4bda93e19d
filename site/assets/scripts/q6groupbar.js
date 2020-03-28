@@ -171,9 +171,4 @@ function q6groupbar(currentData,currentYear) {
           .attr('font-size', 15);
       
 
-
-
-
-
-
 }
