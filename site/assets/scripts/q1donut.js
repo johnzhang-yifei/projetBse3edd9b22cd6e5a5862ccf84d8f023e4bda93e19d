@@ -4,6 +4,7 @@ function q1donut(currentData, currentYear) {
 if(window.dataTotal.length==0){window.dataTotal.push({"year": currentYear,"data": currentData})};
 if(window.dataTotal[0].year!=currentYear && window.dataTotal.length==1){window.dataTotal.push({"year": currentYear,"data": currentData})};
 
+window.currentData = currentData;
 
 var data = [];
 var nbOui=0, nbNon=0, nbPeutetre=0;
@@ -43,13 +44,25 @@ color.domain(data.map(function(d){ return d.Q1answer; }));
       .attr("height", height)
       .append("g")
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
+  
   var donutchart = svg.selectAll(".arc")
     .data(pie(data))
     .enter()
-    .append("g")
+    .append("g")          
+    .on("click", function(d) {console.log(d.index);
+        if(d.index==0){filterdata(window.currentData, "Oui" )}
+        if(d.index==1){filterdata(window.currentData, "Peut-être" )}
+        if(d.index==2){filterdata(window.currentData, "Non" )}
+
+       // let   data = currentData.filter(function(d) { return d.Q14 != "" });
+        //analyse();
+            })
     .on("mouseover", tip.show)
     .on("mouseout", tip.hide);    
+
+function filterdata(data,key){console.log(window.currentData);
+  window.currentData.filter(function(x) { return x.Q1 == key })
+}
 
     donutchart.append("text")
     .attr("text-anchor", "middle")
@@ -80,13 +93,24 @@ color.domain(data.map(function(d){ return d.Q1answer; }));
       return d.data.Q1answer + ": "+ (d.data.count*100/totalCount).toFixed(0)  + '%';
     });
       
-
+    donutchart.call(tip);
     tip.html(function(d) {//console.log(d.data.Q1answer);
         
         return d.data.Q1answer +":</br>" + d.data.count + " (" + (d.data.count*100/ totalCount).toFixed(1) + "% ) répondants";
         
       });
 
-    donutchart.call(tip);
 
 }
+
+function analyse(){
+  q1donut(currentData,window.currentYear);
+  q2waffle(currentData,window.currentYear);
+  q3bar(currentData,window.currentYear);
+  q4stackbar(currentData,window.currentYear);
+  q5stackbar(currentData,window.currentYear);
+  q6groupbar(currentData,window.currentYear);
+  q7sortbar(currentData,window.currentYear);
+  q8sortbar(currentData,window.currentYear);
+  q9wordcloud(currentData,window.currentYear);
+  q9table(currentData,window.currentYear);}

@@ -11,45 +11,35 @@
   //console.log(files);
   /***** Chargement des données *****/
   Promise.all(files.map(url => d3.dsv(";", url))).then(function (results) {
-      var currentYear = "2019";
+      window.currentYear = "2019";
       var currentData = results[0];
-      
-
-
-        q1donut(currentData,currentYear);
-        q2waffle(currentData,currentYear);
-        q3bar(currentData,currentYear);
-        q4stackbar(currentData,currentYear);
-        q5stackbar(currentData,currentYear);
-        q6groupbar(currentData,currentYear);
-        q7sortbar(currentData,currentYear);
-        q8sortbar(currentData,currentYear);
-        q9wordcloud(currentData,currentYear);
-        q9table(currentData,currentYear);
+      d3.selectAll('svg').remove();
+      analyse();
 
       /***** Transition entre les données des années 2000 et 2014 *****/
       var toggleButtons = d3.selectAll(".toggle-buttons > button");
       toggleButtons.on("click", function(d, i) {
-          currentYear = d3.select(this).text();
+        window.currentYear = d3.select(this).text();
           currentData = results[i];
           toggleButtons.classed("active", function() {
-            return currentYear === d3.select(this).text();
+            return window.currentYear === d3.select(this).text();
           });
           d3.selectAll('svg').remove();
           d3.selectAll('table').remove();
-          q1donut(currentData,currentYear);
-          q2waffle(currentData,currentYear);
-          q3bar(currentData,currentYear);
-          q4stackbar(currentData,currentYear);
-          q5stackbar(currentData,currentYear);
-          q6groupbar(currentData,currentYear);
-          q7sortbar(currentData,currentYear);
-          q8sortbar(currentData,currentYear);
-          q9wordcloud(currentData,currentYear);
-          q9table(currentData,currentYear);
+          analyse();
         })
     
-
+        function analyse(){
+          q1donut(currentData,window.currentYear);
+          q2waffle(currentData,window.currentYear);
+          q3bar(currentData,window.currentYear);
+          q4stackbar(currentData,window.currentYear);
+          q5stackbar(currentData,window.currentYear);
+          q6groupbar(currentData,window.currentYear);
+          q7sortbar(currentData,window.currentYear);
+          q8sortbar(currentData,window.currentYear);
+          q9wordcloud(currentData,window.currentYear);
+          q9table(currentData,window.currentYear);}
      
 
     });
