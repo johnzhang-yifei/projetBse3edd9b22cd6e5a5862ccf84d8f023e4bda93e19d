@@ -21,7 +21,7 @@ thead = table.append("thead"),
 tbody = table.append("tbody");
 
 table.append("caption")
-.text("Tableau de l'année "+ currentYear + ": "+nbRepondant +" répondants, "+ nbcommentaire+" commentaires.");
+.text("Tableau: Commentaires de l'année "+ currentYear + ": "+nbRepondant +" répondants, "+ nbcommentaire+" commentaires en total.");
 
 // append the header row
 thead.append("tr")

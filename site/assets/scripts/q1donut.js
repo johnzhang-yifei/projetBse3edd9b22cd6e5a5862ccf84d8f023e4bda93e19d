@@ -1,5 +1,10 @@
 function q1donut(currentData, currentYear) {
-   // console.log("q1donut",currentData);
+   console.log("q1donut",currentData);
+   console.log(window.dataTotal);
+if(window.dataTotal.length==0){window.dataTotal.push({"year": currentYear,"data": currentData})};
+if(window.dataTotal[0].year!=currentYear && window.dataTotal.length==1){window.dataTotal.push({"year": currentYear,"data": currentData})};
+
+
 var data = [];
 var nbOui=0, nbNon=0, nbPeutetre=0;
 var totalCount = currentData.length;

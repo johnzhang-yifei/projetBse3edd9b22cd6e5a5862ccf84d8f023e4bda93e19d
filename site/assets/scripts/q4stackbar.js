@@ -65,7 +65,7 @@ function chart(csv, currentYear) {
   
 	var motifs = [...new Set(csv.map(d => d.Motif))]
 
-	var svg = d3.select('#q4stackbar').append("svg").attr("width", 560).attr("height", 400),
+	var svg = d3.select('#q4stackbar').append("svg").attr("width", 560).attr("height", 378),
 		margin = {top: 15, left: 50, bottom: 50, right: 80},
 		width = 570 - margin.left - margin.right,
 		height = 390 - margin.top - margin.bottom;
@@ -91,8 +91,8 @@ function chart(csv, currentYear) {
   var tip = d3.tip()
       .attr('class', 'd3-tip')
       .offset([-10, 0])
-      .html(function(d) {
-         
+      .html(function(d,i) {
+         console.log(d,i);
         let text =  "% ) répondants:" ;
         return text;
       });

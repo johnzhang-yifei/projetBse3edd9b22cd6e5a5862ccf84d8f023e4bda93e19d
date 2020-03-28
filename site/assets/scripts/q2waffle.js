@@ -1,7 +1,7 @@
 
 function q2waffle(currentData,currentYear) {
 
-   console.log("q2waffle",currentYear, currentData);
+   //console.log("q2waffle",currentYear, currentData);
 
    var dataFromation = [];
    var nbF1=0, nbF2=0, nbF3=0;

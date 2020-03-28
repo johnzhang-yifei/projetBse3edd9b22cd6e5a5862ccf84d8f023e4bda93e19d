@@ -6,7 +6,7 @@
  */
 (function (d3, localization) {
   "use strict";
-
+  window.dataTotal =[];
   var files = ["./data/bse2019.csv", "./data/bse2017.csv"];
   //console.log(files);
   /***** Chargement des données *****/
