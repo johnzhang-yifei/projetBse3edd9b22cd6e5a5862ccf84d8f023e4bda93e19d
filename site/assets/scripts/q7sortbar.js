@@ -36,9 +36,9 @@ function q7sortbar(currentData,currentYear) {
 
   //console.log(data);
 
-   var barChartMargin = { top: 30, right: 10, bottom: 180, left: 30};
-   var barChartWidth = 720 - barChartMargin.left - barChartMargin.right;
-   var barChartHeight = 450 - barChartMargin.top - barChartMargin.bottom;
+   var barChartMargin = { top: 30, right: 50, bottom: 120, left: 50};
+   var barChartWidth = 460 - barChartMargin.left - barChartMargin.right;
+   var barChartHeight = 420 - barChartMargin.top - barChartMargin.bottom;
 
    var Q7answers = data.map(function(d){ return d.Q7answer; })
    var color = d3.scaleOrdinal(d3.schemeCategory10).domain(Q7answers);
@@ -66,7 +66,7 @@ function q7sortbar(currentData,currentYear) {
    .attr("class", "legend")
    .attr("y", -10)
    .attr("transform", "translate(-30,0)")
-   .text(currentYear + " Year: Ressources Courantes");
+   .text(currentYear + " Year");
 
    
    barChartGroup.append("g")
@@ -74,7 +74,7 @@ function q7sortbar(currentData,currentYear) {
    .call(xAxis)
    .attr("transform", "translate(0," +  barChartHeight + ")")
    .selectAll("text")
-   .attr("transform", "rotate(10)")
+   .attr("transform", "rotate(30)")
    .style("text-anchor", "start");
 
 

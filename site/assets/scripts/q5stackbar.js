@@ -115,14 +115,14 @@ let year   = [...new Set(csv.map(d => d.year))]
 
 let itemslist = [...new Set(csv.map(d => d.item))]
 
-let svg = d3.select('#q5stackbar').append("svg").attr("width", 650).attr("height", 400),
-  margin = {top: 35, left: 35, bottom: 80, right: 100},
-  width = 760 - margin.left - margin.right,
-  height = 480 - margin.top - margin.bottom;
+let svg = d3.select('#q5stackbar').append("svg").attr("width", 940).attr("height", 420),
+  margin = {top: 35, left: 50, bottom: 50, right: 100},
+  width = 940 - margin.left - margin.right,
+  height = 420 - margin.top - margin.bottom;
 
 let x = d3.scaleBand()
   .range([margin.left, width - margin.right])
-  .padding(0.1)
+  .padding(0.3)
 
 let y = d3.scaleLinear()
   .rangeRound([height - margin.bottom, margin.top])
@@ -222,8 +222,8 @@ function update(input, speed, choix) {
 
     let legendRectSize = 10;
     let legendSpacing = 10;
-    let legendX = 540;
-    let legendY = 30;
+    let legendX = 740;
+    let legendY = 60;
     let legendMargin = 10;
     let legend = svg.append("g")
         .selectAll("g")
@@ -261,7 +261,7 @@ function update(input, speed, choix) {
     legend.append('text')
         .attr('x', legendX + legendRectSize + legendSpacing)
         .attr('y', legendY + legendRectSize - legendSpacing + legendMargin)
-        .text(function(d) { return d; })
+        .text(function(d) { return d+"(Cliquez d'ici)"; })
         .attr('font-size', 12)
         .on("click", function(d) {//console.log(d);
           if(d=="1er choix"){update(input, 450, 1)}

@@ -24,9 +24,9 @@ function q3bar(currentData, currentYear) {
     );
    //console.log(data);
 
-    var barChartMargin = { top: 30, right: 10, bottom: 180, left: 30};
-    var barChartWidth = 480 - barChartMargin.left - barChartMargin.right;
-    var barChartHeight = 450 - barChartMargin.top - barChartMargin.bottom;
+    var barChartMargin = { top: 20, right: 120, bottom: 120, left: 50};
+    var barChartWidth = 360 - barChartMargin.left - barChartMargin.right;
+    var barChartHeight = 400 - barChartMargin.top - barChartMargin.bottom;
   
 
   
@@ -57,7 +57,7 @@ function q3bar(currentData, currentYear) {
     .attr("class", "legend")
     .attr("y", -10)
     .attr("transform", "translate(-30,0)")
-    .text(currentYear + " Year Nombre de répondants");
+    .text(currentYear + " Year");
 
     
     barChartGroup.append("g")
@@ -65,7 +65,7 @@ function q3bar(currentData, currentYear) {
     .call(xAxis)
     .attr("transform", "translate(0," +  barChartHeight + ")")
     .selectAll("text")
-    .attr("transform", "rotate(10)")
+    .attr("transform", "rotate(30)")
     .style("text-anchor", "start");
 
 

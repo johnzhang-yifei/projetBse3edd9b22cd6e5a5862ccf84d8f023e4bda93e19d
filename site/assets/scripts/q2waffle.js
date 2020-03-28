@@ -27,8 +27,8 @@ function q2waffle(currentData,currentYear) {
        else if(currentData[i].Q12A=="Ne souhaite pas répondre"||currentData[i].Q12A=="Autre"){nbAutre++;}
        }	
    dataGenre.push(
-      { "name": "Un homme", "value": nbHomme},
-      { "name": "Une femme", "value": nbFemme},
+      { "name": "Homme", "value": nbHomme},
+      { "name": "Femme", "value": nbFemme},
       { "name": "Autre", "value": nbAutre}
    );
 
@@ -202,37 +202,37 @@ function waffle(data, c , l){
          tip.html(function(d,i) {
             //console.log(d,i);
         
-               return d.name +":"+ d.unit +"% _"+d.value+" répondants" ;
+               return d.name +": </br>"+ d.unit +"% _"+d.value+" répondants" ;
                
              });
        
          selection.call(tip);
             
 
-   var legend = d3.select(l)
+   var legendW = d3.select(l)
    .append("svg")
    .attr('width', 300)
-   .attr('height', 200)
+   .attr('height', 100)
    .append('g')
    .selectAll("div")
    .data(squareCol.domain())
    .enter()
      .append("g")
      .attr('transform', function(d,i){ return "translate(0," + i*20 + ")";});
- legend.append("rect")
-   .attr("width", 18)
-   .attr("height", 18)
-   .style("fill", function(d, i) { return d.name === "erreur totale" ? "#e0e5db":squareCol(d.name)});
- legend.append("text")
-   .attr("x", 25)
-   .attr("y", 13)
+ legendW.append("rect")
+   .attr("x", 30)
+   .attr("y", 10)
+   .attr("width", 15)
+   .attr("height", 15)
+   .style("fill", function(d, i) {//console.log(i); 
+      return squareCol(squareCol.domain()[i])});
+ legendW.append("text")
+   .attr("x", 55)
+   .attr("y", 22)
    .text( function(d) { return d});
 
    
-   var legend2 = d3.select("#q2genrelegend")
-     .select('svg')
-     .append('g')
-     .attr('transform', "translate(100,0)");
+
 }
 
 
@@ -240,9 +240,9 @@ function waffle(data, c , l){
 //BarChart for Program
 
 
-var barChartMargin = { top: 30, right: 180, bottom: 200, left: 30};
-var barChartWidth = 580 - barChartMargin.left - barChartMargin.right;
-var barChartHeight = 500 - barChartMargin.top - barChartMargin.bottom;
+var barChartMargin = { top: 50, right: 180, bottom: 120, left: 50};
+var barChartWidth = 560 - barChartMargin.left - barChartMargin.right;
+var barChartHeight = 360 - barChartMargin.top - barChartMargin.bottom;
 
 
 dataProgram.sort(function (a, b) { return b.value - a.value;  });
@@ -272,9 +272,9 @@ var barChartGroup = barChartSvg.append("g")
 
 barChartGroup.append("text")
 .attr("class", "legend")
-.attr("y", -10)
+.attr("y", -20)
 .attr("transform", "translate(-30,0)")
-.text(currentYear + " Year Programme");
+.text(currentYear + " Year");
 
 
 barChartGroup.append("g")
@@ -323,8 +323,8 @@ barChartSvg.call(tip);
       // Draw legend
       var legendRectSize = 10;
       var legendSpacing = 10;
-      var legendX = 420;
-      var legendY = 20;
+      var legendX = 360;
+      var legendY = -50;
       var legendMargin = 10;
       var legend = barChartGroup.append("g")
           .selectAll("g")
@@ -396,12 +396,12 @@ barChartSvg.call(tip);
              let idBar = "#q2Bar_"+ d.name;
              
              let selBar = d3.select(idBar);
-             console.log(y(d.value) - 5,d.value+" répondants");
+             //console.log(y(d.value) - 5,d.value+" répondants");
              d3.select(this).transition()
                         .duration(100)
                         .ease(d3.easeLinear)
-                        .attr("opacity", ".2");
-                        
+                        .attr("opacity", ".5");
+
             selBar.transition()
                   .duration(100)
                   .ease(d3.easeLinear)

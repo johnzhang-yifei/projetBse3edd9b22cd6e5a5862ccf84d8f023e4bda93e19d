@@ -17,9 +17,9 @@ data.push(
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 color.domain(data.map(function(d){ return d.Q1answer; }));
 //console.log(data);
-  var width = 540,
-  height = 540,
-  radius = 200;
+  var width = 360,
+  height = 360,
+  radius = 100;
 
   var tip = d3.tip()
   .attr('class', 'd3-tip')
@@ -48,7 +48,7 @@ color.domain(data.map(function(d){ return d.Q1answer; }));
 
     donutchart.append("text")
     .attr("text-anchor", "middle")
-    .attr('font-size', '2em')
+    .attr('font-size', '1.5em')
     .attr('y', 0)
     .text(currentYear+ " Year");
 
@@ -65,20 +65,20 @@ color.domain(data.map(function(d){ return d.Q1answer; }));
     donutchart.append("text")
       .attr("transform", function(d) {
       var a = arc.centroid(d);
-      a[0] *= 1.6;	
-      a[1] *= 1.6;	
+      a[0] *= 1.55;	
+      a[1] *= 1.55;	
       return "translate(" + a + ")";
     })
-    .attr("dy", ".50em")
+    .attr("dy", ".55em")
     .attr("text-anchor", "middle")
     .text(function(d) {
-      return d.data.Q1answer + " "+ (d.data.count*100/totalCount).toFixed(2)  + '%';
+      return d.data.Q1answer + ": "+ (d.data.count*100/totalCount).toFixed(0)  + '%';
     });
       
 
     tip.html(function(d) {//console.log(d.data.Q1answer);
         
-        return d.data.count + " (" + (d.data.count*100/ totalCount).toFixed(1) + "% ) répondants:</br>" + d.data.Q1answer;
+        return d.data.Q1answer +":</br>" + d.data.count + " (" + (d.data.count*100/ totalCount).toFixed(1) + "% ) répondants";
         
       });
 

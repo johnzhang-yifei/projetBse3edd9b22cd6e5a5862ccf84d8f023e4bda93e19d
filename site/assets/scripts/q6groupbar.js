@@ -43,7 +43,7 @@ function q6groupbar(currentData,currentYear) {
       .attr('class', 'd3-tip')
       .offset([-10, 0]);
 
-      var chartWidth       = 320,
+      var chartWidth       = 520,
           barHeight        = 20,
           groupHeight      = barHeight * data.series.length,
           gapBetweenGroups = 10,
@@ -88,7 +88,7 @@ function q6groupbar(currentData,currentYear) {
           .attr("x", 50)
           .attr("y", 10)
           .attr("transform", "translate(-30,0)")
-          .text(currentYear + " Year: Impacts");
+          .text(currentYear + " Year");
 
       // Create bars
       var bar = chart.selectAll("g")
@@ -134,7 +134,7 @@ function q6groupbar(currentData,currentYear) {
       // Draw legend
       var legendRectSize = 10;
       var legendSpacing = 10;
-      var legendX = 640;
+      var legendX = 810;
       var legendY = 20;
       var legendMargin = 10;
       var legend = chart.append("g")

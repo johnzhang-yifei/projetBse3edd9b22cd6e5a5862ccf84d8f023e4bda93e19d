@@ -65,14 +65,14 @@ function chart(csv, currentYear) {
   
 	var motifs = [...new Set(csv.map(d => d.Motif))]
 
-	var svg = d3.select('#q4stackbar').append("svg").attr("width", 640).attr("height", 400),
-		margin = {top: 35, left: 35, bottom: 50, right: 80},
-		width = 640 - margin.left - margin.right,
-		height = 400 - margin.top - margin.bottom;
+	var svg = d3.select('#q4stackbar').append("svg").attr("width", 560).attr("height", 400),
+		margin = {top: 15, left: 50, bottom: 50, right: 80},
+		width = 570 - margin.left - margin.right,
+		height = 390 - margin.top - margin.bottom;
 
 	var x = d3.scaleBand()
 		.range([margin.left, width - margin.right])
-		.padding(0.1)
+		.padding(0.3)
 
 	var y = d3.scaleLinear()
 		.rangeRound([height - margin.bottom, margin.top])
@@ -126,7 +126,7 @@ function chart(csv, currentYear) {
 		svg.selectAll(".x-axis").transition().duration(speed)
       .call(d3.axisBottom(x).tickSizeOuter(0))
       .selectAll("text")
-      .attr("transform", "rotate(10)")
+      .attr("transform", "rotate(30)")
       .style("text-anchor", "start");
     
 
@@ -178,7 +178,7 @@ function chart(csv, currentYear) {
 
       var legendRectSize = 10;
       var legendSpacing = 10;
-      var legendX = 480;
+      var legendX = 390;
       var legendY = 30;
       var legendMargin = 8;
       var legend = svg.append("g")

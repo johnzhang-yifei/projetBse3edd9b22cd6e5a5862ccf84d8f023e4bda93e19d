@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <title>INF8808 - H20 - G8 - Projet</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
 
 <script type="text/javascript" src="assets/libs/d3.js"></script>
 <script type="text/javascript" src="assets/libs/d3-tip.js"></script>
 <script type="text/javascript" src="assets/libs/localization-fr.js"></script>
-<!--<script type="text/javascript" src="assets/libs/d3-waffle.js"></script>-->
+ 
 
 <script type="text/javascript" src="assets/libs/htmlwidgets.js"></script>
 <script type="text/javascript" src="assets/libs/wordcloud2-all.js"></script>
@@ -22,6 +23,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <script src="https://d3js.org/d3-array.v2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script>
 
@@ -30,14 +32,14 @@
 
 
 <div class="row">
+  
   <div class="col"></div>
   <div class="col">
-    <div class="toggle-buttons">
+    <div class="toggle-buttons" id="compareYears">
       <button class="active">2019</button>
       <button>2017</button>
     </div>
   </div>
-  <div class="col"></div>
   
 </div>
 <script type="text/javascript" src="assets/scripts/main.js"></script>
@@ -51,49 +53,49 @@
 <script type="text/javascript" src="assets/scripts/q8sortbar.js"></script>
 <script type="text/javascript" src="assets/scripts/q9table.js"></script>
 <script type="text/javascript" src="assets/scripts/q9wordcloud.js"></script>
+<h1>Entrepreneuriat à Polytechnique</h1>
+<div id="introduction"><h2>Introduction</h2></div>
 
-<div id="introduction"></div>
-
-<div id="viz1">
-<div id="q1donut"></div>
-<div id="q2programmeBar">q2programmeBar</div>
-<div id="q2walffe">Q2walffe
-  <div id="q2formation"><div id="q2formationchart"></div><div id="q2formationlegend"></div></div>
-  <div id="q2genre"><div id="q2genrechart"></div><div id="q2genrelegend"></div></div>
+<div id="viz1" style="overflow: auto;"><h2>Profil analyse<br> - intérêt, profils des étudiants</h2>
+<div id="q1donut"  class="card"><h4>L'intention de créer l'entreprise</h4></div>
+<div id="q2programmeBar" class="card"><h4>Programme</h4></div>
+<div id="q2walffe" style="overflow: auto; clear: left;">
+  <div id="q2formation" class="card"><h4>Formation</h4><div id="q2formationchart"></div><div id="q2formationlegend"></div></div>
+  <div id="q2genre" class="card"><h4>Sexe</h4><div id="q2genrechart"></div><div id="q2genrelegend"></div></div>
   <div id="q2programme" style="display: none;"><div id="q2programmechart"></div><div id="q2programmelegend"></div></div>
-  <div id="q2statueAuCanada"><div id="q2statueAuCanadachart"></div><div id="q2statueAuCanadalegend"></div></div>
+  <div id="q2statueAuCanada" class="card"><h4>Satue au Canada</h4><div id="q2statueAuCanadachart"></div><div id="q2statueAuCanadalegend"></div></div>
 </div>
 </div>
 
 
-<div id="viz2">
-<div id="q3bar"></div>
-<div id="q4stackbar">
-  <div class="row">
+<div id="viz2" style="overflow: auto; clear: left;"><h2>Objectif analyse<br> - Quand, motifs, impacts</h2>
+<div id="q3bar" class="card"><h4>Quand</h4></div>
+<div id="q4stackbar" class="card"><h4>Motifs</h4>
+  <div class="row" style="z-index:3;">
     <div class="col"></div>
     <div class="col"><input type="checkbox" id="q4sort">Mise en ordre</div>
     <div class="col"></div>
   </div>   
   </div>
-<div id="q6groupbar"></div>
+<div id="q6groupbar" class="card"><h4>Impacts</h4></div>
 </div>
 
 
-<div id="viz3">
-<div id="q5stackbar"></div>
-<div id="q7sortbar"></div>
-<div id="q8sortbar"></div>
+<div id="viz3" style="overflow: auto; clear: left;"><h2>Ressources analyse<br> - Aides utiles, ressources courantes, moyens de communication</h2>
+<div id="q5stackbar" class="card"><h4>Aides utiles</h4></div>
+<div id="q7sortbar" class="card"><h4>Ressources courrantes</h4></div>
+<div id="q8sortbar" class="card"><h4>Moyens de communication</h4></div>
 </div>
 
 
-<div id="viz4">
-<div id="q9wordcloud">
+<div id="viz4" style="overflow: auto; clear: left;"><h2>Commentaires analyse</h2>
+<div id="q9wordcloud" class="card">
   <!--
   <iframe id="Q9iFrame2019" src="http://127.0.0.1:5501/q9wordcloud2019.html"  style="width:768px;height:768px;display:none;"></iframe>
 
   <iframe id="Q9iFrame2017" src="http://127.0.0.1:5501/q9wordcloud2017.html"  style="width:768px;height:768px;display:none;"></iframe>
  end-->
-  <div id="htmlwidget-q9wordcloud2019" style="width:768px;height:768px;display:flex;" class="wordcloud2 html-widget"></div>
+  <div id="htmlwidget-q9wordcloud2019" style="width:940px;height:420px;display:flex;" class="wordcloud2 html-widget"></div>
   <script type="application/json" data-for="htmlwidget-q9wordcloud2019">{
     "x": {
         "word": ["entreprenariat","idée","étudiants","projet","domaine","merci","sondage","encourager","futurs","ingénieurs","promouvoir","cours","entreprise","polytechnique","entrepreneurs","temps","entrepreneurial","domaines","intéressant","lancer","possibilité","pouvoir","produit","développer","intégrateur","politique","recherche","support","activités","artenaires","co-founders","conférences","connaissances","contacts","découvrir","disposition","encourager","entreprises","expérience","ingénierie","mentor","organiser","participer","présentation","professionnelle","réaliser","stage","laboratoire","professeurs","technologique"],
@@ -158,11 +160,12 @@
 end-->
 
 </div>
-<div id="q9table">Here are table</div>
+<div id="q9wordFrequency" style="overflow: auto; clear: left;"></div>
+<div id="q9table" class="container card" style="text-align-last: left; width:940px; margin-left: 10px;"></div>
 </div>
 
 
-<div id="conclusion"></div>
+<div id="conclusion"><h2>Conclusion</h2></div>
 
  
   

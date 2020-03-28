@@ -1,7 +1,10 @@
 function q9table(currentData,currentYear) {
 
    // console.log("q9table",currentYear,currentData);
-
+let wordFrequecy = {
+   "word": ["entreprenariat","idée","étudiants","projet","domaine","merci","sondage","encourager","futurs","ingénieurs","promouvoir","cours",      "entreprise","polytechnique","entrepreneurs","temps","entrepreneurial","domaines","intéressant","lancer","possibilité","pouvoir","produit","développer","intégrateur","politique","recherche","support","activités","artenaires","co-founders","conférences","connaissances","contacts","découvrir","disposition","encourager","entreprises","expérience","ingénierie","mentor","organiser","participer","présentation","professionnelle","réaliser","stage","laboratoire","professeurs","technologique"],
+   "freq": [38,27,19,19,17,16,14,11,11,11,11,10,9,8,7,6,5,4,4,4,4,4,4,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1]};
+//console.log(wordFrequecy);
 
  let   data = currentData.filter(function(d) { return d.Q14 != "" });
  
@@ -12,6 +15,7 @@ function q9table(currentData,currentYear) {
 
 
 let table = d3.select("#q9table").append("table")
+.attr("class", "table-hover")
 .attr("style", "margin-left: 20px"),
 thead = table.append("thead"),
 tbody = table.append("tbody");
