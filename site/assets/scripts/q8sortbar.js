@@ -29,7 +29,7 @@ function q8sortbar(currentData,currentYear) {
          {Q8answer:"Cela ne m’intéresse pas", count:nbQ8G},
          {Q8answer:"Autre", count:nbQ8H}
      );
-     data.sort(function (a, b) { return b.count - a.count;  });;
+     data.sort(function (a, b) { return b.count - a.count;  });
   
   //  console.log(data);
   
@@ -101,7 +101,7 @@ function q8sortbar(currentData,currentYear) {
   
      tip.html(function(d) {
          let percent = d.count / (d3.sum(data, function(d){return d.count; }));  
-         let text =  d.count + " (" + (percent*100).toFixed(1) + "% ) répondants:</br>" + d.Q8answer;
+         let text =  d.Q8answer+"</br>"+ d.count + " (" + (percent*100).toFixed(1) + "% ) répondants";
          return text;
        });
   

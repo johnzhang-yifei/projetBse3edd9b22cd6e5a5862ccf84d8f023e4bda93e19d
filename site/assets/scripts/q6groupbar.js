@@ -132,7 +132,7 @@ function q6groupbar(currentData,currentYear) {
             .call(yAxis);
       
       // Draw legend
-      var legendRectSize = 12;
+      var legendRectSize = 10;
       var legendSpacing = 10;
       var legendX = 640;
       var legendY = 20;
@@ -166,9 +166,8 @@ function q6groupbar(currentData,currentYear) {
       legend.append('text')
           .attr('x', legendX + legendRectSize + legendSpacing)
           .attr('y', legendY + legendRectSize - legendSpacing + legendMargin)
-          .attr("class", "legend_text")
           .text(function(d) { return data.series[d].label; })
-          .attr('font-size', 15);
+          .attr('font-size', 12);
       
 
 }

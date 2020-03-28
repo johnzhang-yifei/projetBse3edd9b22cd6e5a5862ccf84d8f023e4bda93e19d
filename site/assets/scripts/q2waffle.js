@@ -65,12 +65,11 @@ function q2waffle(currentData,currentYear) {
       {"name": "Chimique", "value": nbP3},
       {"name": "Civil", "value": nbP4},
       {"name": "Électrique", "value": nbP5},
-      {"name": "Énergétique et nucléaire", "value": nbP6},
+      {"name": "Énergie-nucléaire", "value": nbP6},
       {"name": "Géologique", "value": nbP7},
       {"name": "Industriel", "value": nbP8},
       {"name": "Informatique", "value": nbP9},
       {"name": "Logiciel", "value": nbP10},
-      {"name": "Mathématiques de l’ingénieur", "value": nbP11},
       {"name": "Mécanique", "value": nbP12},
       {"name": "Métallurgique", "value": nbP13},
       {"name": "Minéral", "value": nbP14},
@@ -107,6 +106,8 @@ function q2waffle(currentData,currentYear) {
        waffle(dataStatueCa, "#q2statueAuCanadachart", "#q2statueAuCanadalegend");
 
 function waffle(data, c , l){
+
+
    var margin = { top: 5, right: 5, bottom: 5, left: 5 },
        squareSize = 20,
        squareCol = d3.scaleOrdinal(d3.schemeCategory10).domain(data.map(function(d){ return d.name; })),
@@ -141,6 +142,20 @@ function waffle(data, c , l){
                            value:data[i].value,
                            name:data[i].name
                      });         
+      }
+   }
+
+
+   let nbWD = waffleData.length;
+  // console.log(waffleData[nbWD-1]);
+   if(nbWD<100){
+      for(let k=nbWD; k<100; k++){
+         waffleData.push({
+            groupId:waffleData[nbWD-1].groupId+1,
+            unit: 100-nbWD,
+            value:0,
+            name:"erreur totale"
+      });   
       }
    }
 
@@ -181,7 +196,7 @@ function waffle(data, c , l){
           .merge(join)
           .transition()
           .attr('fill', function (d, i) {
-             return squareCol(d.name)
+             return d.name === "erreur totale" ? "#e0e5db":squareCol(d.name)
              });
             
          tip.html(function(d,i) {
@@ -207,7 +222,7 @@ function waffle(data, c , l){
  legend.append("rect")
    .attr("width", 18)
    .attr("height", 18)
-   .style("fill", function(d, i) { return squareCol(d)});
+   .style("fill", function(d, i) { return d.name === "erreur totale" ? "#e0e5db":squareCol(d.name)});
  legend.append("text")
    .attr("x", 25)
    .attr("y", 13)
@@ -225,13 +240,14 @@ function waffle(data, c , l){
 //BarChart for Program
 
 
-var barChartMargin = { top: 30, right: 120, bottom: 200, left: 30};
+var barChartMargin = { top: 30, right: 180, bottom: 200, left: 30};
 var barChartWidth = 580 - barChartMargin.left - barChartMargin.right;
 var barChartHeight = 500 - barChartMargin.top - barChartMargin.bottom;
 
 
-
+dataProgram.sort(function (a, b) { return b.value - a.value;  });
 var Q11Answer = dataProgram.map(function(d){ return d.name; })
+
 var color = d3.scaleOrdinal(d3.schemeCategory10).domain(Q11Answer);
 var x = d3.scaleBand()
          .domain(Q11Answer)
@@ -266,7 +282,7 @@ barChartGroup.append("g")
 .call(xAxis)
 .attr("transform", "translate(0," +  barChartHeight + ")")
 .selectAll("text")
-.attr("transform", "rotate(40)")
+.attr("transform", "rotate(70)")
 .style("text-anchor", "start");
 
 
@@ -279,7 +295,7 @@ var tip = d3.tip()
 .offset([-10, 0])
 .html(function(d) {
   let percent = d.value / (d3.sum(dataProgram, function(d){return d.value; }));  
-  let text =  d.value + " (" + (percent*100).toFixed(1) + "% ) répondants:</br>" + d.name;
+  let text = d.name  + ":</br>"+ d.value + " (" + (percent*100).toFixed(1) + "% ) répondants" ;
   return text;
 });
 
@@ -293,6 +309,11 @@ barChartGroup.selectAll("rect")
 .attr("y", function(d) { return y(d.value)})
 .attr("height", function(d) { return barChartHeight - y(d.value); })
 .attr("fill", function(d) { return color(d.name); })
+.attr("opacity", 1.0)    
+.attr("id", function(d){ 
+   //console.log(d);
+   return "q2Bar_" + d.name;      
+   })
 .on("mouseover", tip.show)
 .on("mouseout", tip.hide);
 
@@ -300,9 +321,9 @@ barChartSvg.call(tip);
 
 
       // Draw legend
-      var legendRectSize = 12;
+      var legendRectSize = 10;
       var legendSpacing = 10;
-      var legendX = 440;
+      var legendX = 420;
       var legendY = 20;
       var legendMargin = 10;
       var legend = barChartGroup.append("g")
@@ -328,8 +349,38 @@ barChartSvg.call(tip);
           })
           .attr("class", "legend")
           .style("fill", function(d){ return  color(d.name);  })
-          .on("mouseover", tip.show)
-          .on("mouseout", tip.hide);
+          .on("mouseover", function(d) {
+            // tip.show;
+             
+             let idBar = "#q2Bar_"+ d.name;
+             
+             let selBar = d3.select(idBar);
+             //console.log(idBar+" in");
+             d3.select(this).transition()
+                        .duration(100)
+                        .ease(d3.easeLinear)
+                        .attr("opacity", ".2");
+            selBar.transition()
+                  .duration(100)
+                  .ease(d3.easeLinear)
+                  .attr("opacity", ".2");
+
+           })
+          .on("mouseout", function(d) {
+            // tip.hide;
+             
+             let idBar = "#q2Bar_" +d.name;
+             let selBar = d3.select(idBar);
+             //console.log( idBar+" out");
+             d3.select(this).transition()
+                        .duration(100)
+                        .ease(d3.easeLinear)
+                        .attr("opacity", "1.0");
+            selBar.transition()
+                  .duration(100)
+                  .ease(d3.easeLinear)
+                  .attr("opacity", "1.0");
+           });
       
 
       
@@ -338,9 +389,49 @@ barChartSvg.call(tip);
           .attr('y', legendY + legendRectSize - legendSpacing + legendMargin)
           .attr("class", "legend_text")
           .text(function(d) { return d.name })
-          .attr('font-size', 15)
-          .on("mouseover", tip.show)
-          .on("mouseout", tip.hide);
+          .attr('font-size', 12)
+          .on("mouseover", function(d) {
+             //tip.show;
+             
+             let idBar = "#q2Bar_"+ d.name;
+             
+             let selBar = d3.select(idBar);
+             console.log(y(d.value) - 5,d.value+" répondants");
+             d3.select(this).transition()
+                        .duration(100)
+                        .ease(d3.easeLinear)
+                        .attr("opacity", ".2");
+                        
+            selBar.transition()
+                  .duration(100)
+                  .ease(d3.easeLinear)
+                  .attr("opacity", ".2");
+
+            selBar.append("text")
+                  .attr("x", d => x(d.name) + x.bandwidth() / 2)
+                  .attr("y", d => y(d.value) - 5)
+                  .attr("text-anchor", "middle")
+                  .text(d => d.value +" répondants")
+                  .attr('font-size', 12)
+
+           })
+          .on("mouseout", function(d) {
+             //tip.hide;
+             
+             let idBar = "#q2Bar_" +d.name;
+             let selBar = d3.select(idBar);
+             //console.log( idBar+" out");
+             d3.select(this).transition()
+                        .duration(100)
+                        .ease(d3.easeLinear)
+                        .attr("opacity", "1.0");
+            selBar.transition()
+                  .duration(100)
+                  .ease(d3.easeLinear)
+                  .attr("opacity", "1.0");
+
+            selBar.selectAll("text").remove();
+           });
 
       legend.call(tip);
 

@@ -78,7 +78,7 @@ function q3bar(currentData, currentYear) {
     .offset([-10, 0])
     .html(function(d) {
       let percent = d.count / (d3.sum(data, function(d){return d.count; }));  
-      let text =  d.count + " (" + (percent*100).toFixed(1) + "% ) répondants:</br>" + d.Q3answer;
+      let text = d.Q3answer +"</br>"+ d.count + " (" + (percent*100).toFixed(1) + "% ) répondants";
       return text;
     });
 

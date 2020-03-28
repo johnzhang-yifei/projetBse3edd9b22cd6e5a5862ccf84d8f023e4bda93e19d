@@ -220,7 +220,7 @@ function update(input, speed, choix) {
 
     //bars.call(tip);
 
-    let legendRectSize = 12;
+    let legendRectSize = 10;
     let legendSpacing = 10;
     let legendX = 540;
     let legendY = 30;
@@ -261,9 +261,8 @@ function update(input, speed, choix) {
     legend.append('text')
         .attr('x', legendX + legendRectSize + legendSpacing)
         .attr('y', legendY + legendRectSize - legendSpacing + legendMargin)
-        .attr("class", "legend_text")
         .text(function(d) { return d; })
-        .attr('font-size', 15)
+        .attr('font-size', 12)
         .on("click", function(d) {//console.log(d);
           if(d=="1er choix"){update(input, 450, 1)}
           else if(d=="2eme choix"){update(input, 450, 2)}
@@ -276,8 +275,5 @@ function update(input, speed, choix) {
 }
 
 }
-
-  
-
 
 }

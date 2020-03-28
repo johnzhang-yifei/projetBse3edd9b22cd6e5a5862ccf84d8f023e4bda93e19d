@@ -104,7 +104,7 @@ function q7sortbar(currentData,currentYear) {
 
    tip.html(function(d) {
        let percent = d.count / (d3.sum(data, function(d){return d.count; }));  
-       let text =  d.count + " (" + (percent*100).toFixed(1) + "% ) répondants:</br>" + d.Q7answer;
+       let text = d.Q7answer  +"</br>"+ d.count + " (" + (percent*100).toFixed(1) + "% ) répondants";
        return text;
      });
 

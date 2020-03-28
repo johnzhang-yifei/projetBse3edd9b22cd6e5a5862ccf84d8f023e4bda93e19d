@@ -65,9 +65,9 @@ function chart(csv, currentYear) {
   
 	var motifs = [...new Set(csv.map(d => d.Motif))]
 
-	var svg = d3.select('#q4stackbar').append("svg").attr("width", 650).attr("height", 400),
-		margin = {top: 35, left: 35, bottom: 50, right: 50},
-		width = 650 - margin.left - margin.right,
+	var svg = d3.select('#q4stackbar').append("svg").attr("width", 640).attr("height", 400),
+		margin = {top: 35, left: 35, bottom: 50, right: 80},
+		width = 640 - margin.left - margin.right,
 		height = 400 - margin.top - margin.bottom;
 
 	var x = d3.scaleBand()
@@ -176,11 +176,11 @@ function chart(csv, currentYear) {
   
       //bars.call(tip);
 
-      var legendRectSize = 12;
+      var legendRectSize = 10;
       var legendSpacing = 10;
-      var legendX = 540;
+      var legendX = 480;
       var legendY = 30;
-      var legendMargin = 10;
+      var legendMargin = 8;
       var legend = svg.append("g")
           .selectAll("g")
           .data(color.domain())
@@ -215,9 +215,8 @@ function chart(csv, currentYear) {
       legend.append('text')
           .attr('x', legendX + legendRectSize + legendSpacing)
           .attr('y', legendY + legendRectSize - legendSpacing + legendMargin)
-          .attr("class", "legend_text")
-          .text(function(d) { return d; })
-          .attr('font-size', 15)
+          .text(function(d) { return d+"(Cliquez d'ici)"; })
+          .attr('font-size', 12)
           .on("click", function(d) {//console.log(d);
             if(d=="1er choix"){update(input, 450, 1)}
             else if(d=="2eme choix"){update(input, 450, 2)}
