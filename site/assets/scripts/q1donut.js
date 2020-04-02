@@ -55,7 +55,7 @@ color.domain(data.map(function(d){ return d.Q1answer; }));
         if(d.index==2){filterdata(window.currentData, "Non" )}
 
        // let   data = currentData.filter(function(d) { return d.Q14 != "" });
-        //analyse();
+       // analyse();
             })
     .on("mouseover", tip.show)
     .on("mouseout", tip.hide);    

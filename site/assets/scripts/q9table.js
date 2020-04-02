@@ -16,7 +16,6 @@ let wordFrequecy = {
 
 let table = d3.select("#q9table").append("table")
 .attr("class", "table-hover")
-.attr("style", "margin-left: 20px"),
 thead = table.append("thead"),
 tbody = table.append("tbody");
 
